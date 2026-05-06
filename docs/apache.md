@@ -2,15 +2,12 @@
 
 <br>
 
-<h2 align="center">Server Status</h2>
+### Server Status
 
-- On a browser
 ```bash
+# On a browser
 https://example.com/server-status
-```
 
-
-- On Shell
-```bash
+# On Shell
 curl -s https://example.com/server-status?auto
 ```
