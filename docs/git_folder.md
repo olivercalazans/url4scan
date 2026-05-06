@@ -21,32 +21,6 @@ wget https://example.com/.git/refs/heads/master   # The commit hash of the main 
 
 
 <br>
-<br>
-
-
-### git-dumper
-- [Repository](https://github.com/arthaud/git-dumper).  
-
-```bash
-pip install git-dumper
-git-dumper https://example.com/.git/ ./output-folder
-
-# Advanced usage
-git-dumper --header "Authorization: Bearer <TOKEN>" https://example.com/.git/ ./dump
-```
-
-<br>
-
-### GitHack
-- [Repository](https://github.com/lijiejie/GitHack)
-  
-```bash
-python githack.py http://example.com/.git/ 
-```
-
-
-<br>
-<br>
 
 
 ### Post-Exploitation Analysis
@@ -59,15 +33,7 @@ git show <commit-hash>     # Show details of a specific commit
 grep -r "secret" .         # Search for keywords in the code
 ```
 
-### Tools
-
-- `truffleHog`: Scans Git history for high-entropy secrets.
-- `gitleaks`: A SAST tool for detecting hardcoded secrets in Git repos.
-
-
 <br>
-<br>
-
 
 ### Reconstruct Object Files
 
