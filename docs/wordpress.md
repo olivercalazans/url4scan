@@ -4,47 +4,47 @@
 
 <h2 align="center">Version Core</h2>
 
-### WPScan (No flag required)
-
-```bash
-wpscan --url https://example.com
-```
-
-<br>
-
-### Agressive scanning
-
-- Sniffing web page
+### Sniffing web page
 
 ```bash
 curl -s https://example.com | grep -E '(generator" content="[0-9.]+")|(wp_blog_version = "[0-9.]+")|(ver=[0-9.]+)'
 ```
 
-- `wp-admin/load-styles.php` – The Etag header frequently contains the core version.
+<br>
+
+### `wp-admin/load-styles.php` – The Etag header frequently contains the core version.
 
 ```bash
 curl -I https://example.com/wp-admin/load-scripts.php
 ```
 
-- `wp-admin/load-scripts.php` – Follows the same logic as the styles file.
+<br>
+
+### `wp-admin/load-scripts.php` – Follows the same logic as the styles file.
 
 ```bash
 curl -I https://example.com/wp-admin/load-scripts.php
 ```
 
-- `wp-links-opml.php` – This file may contain version information in its content.
+<br>
+
+### `wp-links-opml.php` – This file may contain version information in its content.
 
 ```bash
 curl https://example.com/wp-links-opml.php
 ```
 
-- `sitemap.xml` – The sitemap generator can reveal the WordPress version.
+<br>
+
+### `sitemap.xml` – The sitemap generator can reveal the WordPress version.
 
 ```bash
 curl https://example.com/wp-sitemap.xml
 ```
 
-- `readme.html` – When this file is present, it clearly exposes the version.
+<br>
+
+### `readme.html` – When this file is present, it clearly exposes the version.
 
 ```bash
 curl https://example.com/readme.html
