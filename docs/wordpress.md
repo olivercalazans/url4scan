@@ -133,7 +133,7 @@ wpscan --url https://example.com --enumerate vp, vt
 - Manual
 
 ```bash
-curl -s https://example.com | grep -E "wp-content/(themes|plugins)/[^\"']+"
+curl -s https://example.com | grep -Eo "wp-content/(themes|plugins)/[^\"']+"
 ```
 
 
