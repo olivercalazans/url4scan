@@ -2,47 +2,49 @@
 
 <br>
 
-### Version Core with 
-- WPScan (No flag required)
+<h2 align="center">Version Core</h2>
+
+### WPScan (No flag required)
 
 ```bash
 wpscan --url https://example.com
 ```
 
-- Manual scanning
-  - Passive scanning
-    - **Meta Generator**: In the `<meta name="generator" content="WordPress 6.x.x">` tag.
-    - **JavaScript Variables**: In scripts that expose the version, such as `wp_blog_version = "6.x.x";`.
-    - **HTML Comments**: In comments that accidentally include the version.
-    - **Query Parameters**: In URLs of files (like CSS and JS) that include `?ver=6.x.x`.
+<br>
 
-- Agressive scanning
+### Agressive scanning
 
-1. `wp-admin/load-styles.php` – The Etag header frequently contains the core version.
+- Sniffing web page
+
+```bash
+curl -s https://example.com | grep -E '(generator" content="[0-9.]+")|(wp_blog_version = "[0-9.]+")|(ver=[0-9.]+)'
+```
+
+- `wp-admin/load-styles.php` – The Etag header frequently contains the core version.
 
 ```bash
 curl -I https://example.com/wp-admin/load-scripts.php
 ```
 
-2. `wp-admin/load-scripts.php` – Follows the same logic as the styles file.
+- `wp-admin/load-scripts.php` – Follows the same logic as the styles file.
 
 ```bash
 curl -I https://example.com/wp-admin/load-scripts.php
 ```
 
-3. `wp-links-opml.php` – This file may contain version information in its content.
+- `wp-links-opml.php` – This file may contain version information in its content.
 
 ```bash
 curl https://example.com/wp-links-opml.php
 ```
 
-4. `sitemap.xml` – The sitemap generator can reveal the WordPress version.
+- `sitemap.xml` – The sitemap generator can reveal the WordPress version.
 
 ```bash
 curl https://example.com/wp-sitemap.xml
 ```
 
-5. `readme.html` – When this file is present, it clearly exposes the version.
+- `readme.html` – When this file is present, it clearly exposes the version.
 
 ```bash
 curl https://example.com/readme.html
@@ -53,29 +55,32 @@ curl https://example.com/readme.html
 <br>
 
 
-### User enumeration
+<h2 align="center">User enumeration</h2>
 
-- WPScan (flag `-e u` or `--enumerate u`)
+### WPScan 
+ - flag: `-e u` or `--enumerate u`
 
 ```bash
 wpscan -e u --url https://example.com
 ```
 
-- Manual Scanning
+<br>
 
-1. REST API Analysis
+### Manual Scanning
+
+- REST API Analysis
 
 ```bash
 http://example.com/wp-json/wp/v2/users
 ```
 
-2. Author Enumeration (author URL)
+- Author Enumeration (author URL)
 
 ```bash
 http://example.com/?author=1
 ```
 
-3. Enumeration via WP-Login
+- Enumeration via WP-Login
 
 ```bash
 http://example.com/wp-login.php
@@ -87,7 +92,7 @@ ERROR: Invalid username.
 ERROR: The password you entered for the username username is incorrect.
 ```
 
-4. XML Sitemaps
+- XML Sitemaps
 
 ```bash
 http://example.com/wp-sitemap-users-1.xml
@@ -98,7 +103,7 @@ http://example.com/author-sitemap.xml
 
 ```
 
-5. RSS Feeds
+- RSS Feeds
 
 ```bash
 http://example.com/feed/
@@ -113,7 +118,7 @@ http://example.com/comments/feed/
 <br>
 
 
-### Themes and Plugins
+<h2 align="center">Themes and Plugins</h2>
 
 - WPScan
   - flag `vp`: Vulnerable Plugins
@@ -128,7 +133,7 @@ wpscan --url https://example.com --enumerate vp, vt
 - Manual
 
 ```bash
-curl -s https://example.com | grep -Eo "wp-content/(themes|plugins)/[^\"']+"
+curl -s https://example.com | grep -E "wp-content/(themes|plugins)/[^\"']+"
 ```
 
 
@@ -136,7 +141,7 @@ curl -s https://example.com | grep -Eo "wp-content/(themes|plugins)/[^\"']+"
 <br>
 
 
-### WP-Cron Detection
+<h2 align="center">WP-Cron Detection</h2>
 
 - WPScan (No flag required)
 
