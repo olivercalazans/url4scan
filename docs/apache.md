@@ -2,7 +2,7 @@
 
 <br>
 
-### Server Status
+<h2 align="center">Server Status</h2>
 
 - On a browser
 ```bash
