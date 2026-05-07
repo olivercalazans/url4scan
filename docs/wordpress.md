@@ -57,30 +57,19 @@ curl https://example.com/readme.html
 
 <h2 align="center">User enumeration</h2>
 
-### WPScan 
- - flag: `-e u` or `--enumerate u`
-
-```bash
-wpscan -e u --url https://example.com
-```
-
-<br>
-
-### Manual Scanning
-
-- REST API Analysis
+### REST API Analysis
 
 ```bash
 http://example.com/wp-json/wp/v2/users
 ```
 
-- Author Enumeration (author URL)
+### Author Enumeration (author URL)
 
 ```bash
 http://example.com/?author=1
 ```
 
-- Enumeration via WP-Login
+### Enumeration via WP-Login
 
 ```bash
 http://example.com/wp-login.php
@@ -92,7 +81,7 @@ ERROR: Invalid username.
 ERROR: The password you entered for the username username is incorrect.
 ```
 
-- XML Sitemaps
+### XML Sitemaps
 
 ```bash
 http://example.com/wp-sitemap-users-1.xml
@@ -103,7 +92,7 @@ http://example.com/author-sitemap.xml
 
 ```
 
-- RSS Feeds
+### RSS Feeds
 
 ```bash
 http://example.com/feed/
@@ -120,18 +109,6 @@ http://example.com/comments/feed/
 
 <h2 align="center">Themes and Plugins</h2>
 
-- WPScan
-  - flag `vp`: Vulnerable Plugins
-  - flag `p`: All Plugins
-  - flag `vt`: Vulnerable Themes
-  - flag `t`: All Themes
-
-```bash
-wpscan --url https://example.com --enumerate vp, vt
-```
-
-- Manual
-
 ```bash
 curl -s https://example.com | grep -Eo "wp-content/(themes|plugins)/[^\"']+"
 ```
@@ -142,14 +119,6 @@ curl -s https://example.com | grep -Eo "wp-content/(themes|plugins)/[^\"']+"
 
 
 <h2 align="center">WP-Cron Detection</h2>
-
-- WPScan (No flag required)
-
-```bash
-wpscan --url https://example.com
-```
-
-### Manual
 
 ```bash
 curl -sI http://example.com/wp-cron.php?doing_wp_cron=1
